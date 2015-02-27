@@ -1,0 +1,31 @@
+﻿{
+	"name": "You-Down",
+	"version": "1.0",
+	"manifest_version": 2,
+
+	"description": "Chrome Extension To Download Youtube Videos",
+	 "homepage_url": "http://www.facebook.com/neetesh16",
+	"icons": {
+		"16": "icons/ic16.png",
+    	"32": "icons/ic32.png",
+    	"128": "icons/ic128.png"
+	},
+	"page_action": {
+		 "default_icon": "icons/ic24.png",
+		"default_title": "You-Down"
+	},
+	 "background": {
+    "scripts": ["bg.js"],
+    "persistent": false
+ 	 },
+	"minimum_chrome_version": "18",
+	"permissions": [ "http://*/*", "https://*/*", "unlimitedStorage", "contextMenus", "cookies", "tabs", "notifications" ],
+	
+
+"web_accessible_resources":[
+    "fonts/font-awesome-4.2.0/fonts/*",
+    "fonts/codropsicons/*"
+  
+    ]
+
+}
