@@ -19,12 +19,17 @@ function injectAngular(tabId) {
                  file: 'js/lib/classie.js'
              });
 
+       
+      
         chrome.tabs.executeScript(tabId, {
             file: 'js/lib/angular.min.js'
         }, function () {
 
             /* Inject our app's script */
              
+              chrome.tabs.executeScript(tabId, {
+                 file: 'js/lib/angular-animate.min.js'
+             });
 
             chrome.tabs.executeScript(tabId, {
                 file: 'js/app/content.js'
@@ -35,6 +40,7 @@ function injectAngular(tabId) {
             });
         });
 
+        
         // chrome.tabs.insertCSS(tabId, {
         //         file: 'css/style.css'
         //     });
@@ -62,9 +68,22 @@ chrome.pageAction.onClicked.addListener(function (tab) {
 });
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-  if (~tab.url.indexOf('www.youtube.com/watch?v=')) {
+  if (~tab.url.indexOf('www.youtube.com/watch?v=') || ~tab.url.indexOf('www.youtube.com/playlist?list=')) {
     chrome.pageAction.show(tabId);
     if(changeInfo.status=="complete")
        injectAngular(tab.id);
   }
+});
+
+
+chrome.runtime.onMessage.addListener(function(message) {
+    if (message && message.type == 'copy') {
+        var input = document.createElement('textarea');
+        document.body.appendChild(input);
+        input.value = message.text;
+        input.focus();
+        input.select();
+        document.execCommand('Copy');
+        input.remove();
+    }
 });

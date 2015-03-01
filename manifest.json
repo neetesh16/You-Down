@@ -19,7 +19,7 @@
     "persistent": false
  	 },
 	"minimum_chrome_version": "18",
-	"permissions": [ "http://*/*", "https://*/*", "unlimitedStorage", "contextMenus", "cookies", "tabs", "notifications" ],
+	"permissions": [ "http://*/*", "https://*/*", "unlimitedStorage", "contextMenus", "cookies", "tabs", "notifications","clipboardWrite","clipboardRead" ],
 	
 
 "web_accessible_resources":[
