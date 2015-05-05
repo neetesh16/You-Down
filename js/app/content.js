@@ -1,4 +1,9 @@
-﻿if (document.getElementById("You-Down") != null)
+﻿(function() {
+ 
+
+
+
+if (document.getElementById("You-Down") != null)
     document.getElementById("You-Down").remove();
 
 
@@ -21,7 +26,7 @@ div.dataset.ngNonBindable = '';
 var appRoot = document.createElement('div');
 appRoot.setAttribute("id", "arc");
 appRoot.dataset.ngController = 'cs_myCtrl';
-
+appRoot.innerHTML="";
 if(pv==null)appRoot.innerHTML='<div class="container"><div class="menu-wrap stitched"><nav class="menu"><div class="profile"><img src="{{data.thumbnail}}" alt="PiC"/><span class="titles">{{data.title}}</span></div><div class="link-list"><ul><li ng-repeat="link in data.links" class="lin"><a href="{{link.url}}">{{link.resolution}}</a></li></ul></div><div class="icon-list"><a href="https://github.com/neetesh16/You-Down"><i class="fa fa-lg fa-home"></i></a><a href="https://www.github.com/neetesh16"><i class="fa fa-lg fa-github-square"></i></a><a href="https://www.facebook.com/neetesh16"><i class="fa fa-lg fa-facebook-square"></i></a></div></nav></div><button class="menu-button" id="open-button"><i class="fa fa-fw fa-cog fa-2x"></i><span>Open Menu</span></button>';
 else appRoot.innerHTML = '<button id= "copy-button" class="" data-button={{playlinks}}  ng-click="len==completed && doSomething()"><span id="complete">{{completed}}</span></button>'
 document.body.appendChild(div);
@@ -41,9 +46,11 @@ app.service('pageInfoService', function() {
             success: function(myjson) {
 
                 try {
+                    
                     model.title = myjson[1].data.swfcfg.args.title;
                     model.thumbnail = myjson[1].data.swfcfg.args.thumbnail_url
                     model.links = linkGenerator(myjson[1].data.swfcfg);
+                    out(myjson);
                 }
                 catch(err) {
                     out(err.message);
@@ -266,11 +273,11 @@ function decryptSignature(url) {
         url: url,
         success: function(data) {
 
-            var patt = /function\s[a-zA-Z$_]{2,4}\([a-z]\)\s{0,2}\{[a-z]=[a-z]\.split\(""\);[a-zA-Z0-9.(),;$_]{1,300}return\s[a-z]\.join\(""\)}/g;
+            var patt = /function\s[a-zA-Z0-9$_]{2,4}\([a-z]\)\s{0,2}\{[a-z]=[a-z]\.split\(""\);[a-zA-Z0-9.(),;$_]{1,300}return\s[a-z]\.join\(""\)}/g;
             var algo = patt.exec(data);
             // out(algo);
 
-            var funcfinder = /var\s[a-zA-Z$_]{1,3}=\{[a-zA-Z]{1,3}:function[a-zA-Z0-9.(),;:{}\s=\[\]%]{1,150}\}\;/g;
+            var funcfinder = /var\s[a-zA-Z0-9$_]{1,3}=\{[a-zA-Z0-9]{1,3}:function[a-zA-Z0-9.(),;:{}\s=\[\]%]{1,150}\}\;/g;
             var func = funcfinder.exec(data);
             // out(func);
             console.log(func);
@@ -335,3 +342,5 @@ function decryptSignature(url) {
     return sig.trim();
 
 }
+
+})();
