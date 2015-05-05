@@ -22,7 +22,7 @@ var appRoot = document.createElement('div');
 appRoot.setAttribute("id", "arc");
 appRoot.dataset.ngController = 'cs_myCtrl';
 
-if(pv==null)appRoot.innerHTML = '<div class="container"><div class="menu-wrap stitched"><nav class="menu" ><div class="profile"><img src="{{data.thumbnail}}" alt="PiC"/><span class="titles">{{data.title}}</span></div><div class="link-list"><ul><li ng-repeat="link in data.links" class="lin"><a href="{{link.url}}">{{link.resolution}}</a></li></ul></div></nav></div><button class="menu-button" id="open-button"><i class="fa fa-fw fa-cog fa-2x"></i><span>Open Menu</span></button>';
+if(pv==null)appRoot.innerHTML='<div class="container"><div class="menu-wrap stitched"><nav class="menu"><div class="profile"><img src="{{data.thumbnail}}" alt="PiC"/><span class="titles">{{data.title}}</span></div><div class="link-list"><ul><li ng-repeat="link in data.links" class="lin"><a href="{{link.url}}">{{link.resolution}}</a></li></ul></div><div class="icon-list"><a href="https://github.com/neetesh16/You-Down"><i class="fa fa-lg fa-home"></i></a><a href="https://www.github.com/neetesh16"><i class="fa fa-lg fa-github-square"></i></a><a href="https://www.facebook.com/neetesh16"><i class="fa fa-lg fa-facebook-square"></i></a></div></nav></div><button class="menu-button" id="open-button"><i class="fa fa-fw fa-cog fa-2x"></i><span>Open Menu</span></button>';
 else appRoot.innerHTML = '<button id= "copy-button" class="" data-button={{playlinks}}  ng-click="len==completed && doSomething()"><span id="complete">{{completed}}</span></button>'
 document.body.appendChild(div);
 
@@ -66,7 +66,7 @@ app.service('pageInfoService', function() {
     };
 });
 
-app.controller("cs_myCtrl", function($scope, pageInfoService) {
+app.controller("cs_myCtrl",["$scope","pageInfoService",function($scope, pageInfoService) {
     $scope.message = document.URL;
     
     if (~$scope.message.indexOf('www.youtube.com/watch?v=')) {
@@ -161,7 +161,7 @@ app.controller("cs_myCtrl", function($scope, pageInfoService) {
             }
         });
     }
-});
+}]);
 
 /* Manually bootstrap the Angular app */
 window.name = ''; // To allow `bootstrap()` to continue normally
