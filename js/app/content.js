@@ -203,11 +203,11 @@ function decryptSignature(url){
              url: url,
              success: function(data) { 
                 
-                   var patt = /function\s[a-zA-Z$_]{2,4}\([a-z]\)\s{0,2}\{[a-z]=[a-z]\.split\(""\);[a-zA-Z0-9.(),;$_]{1,300}return\s[a-z]\.join\(""\)}/g;
+                   var patt = /function\s[a-zA-Z0-9$_]{2,4}\([a-z]\)\s{0,2}\{[a-z]=[a-z]\.split\(""\);[a-zA-Z0-9.(),;$_]{1,300}return\s[a-z]\.join\(""\)}/g;
                    var algo = patt.exec(data);
                    // out(algo);
 
-                   var funcfinder = /var\s[a-zA-Z$_]{1,3}=\{[a-zA-Z]{1,3}:function[a-zA-Z0-9.(),;:{}\s=\[\]%]{1,150}\}\;/g;
+                   var funcfinder = /var\s[a-zA-Z0-9$_]{1,3}=\{[a-zA-Z0-9$_]{1,3}:function[a-zA-Z0-9.(),;:{}\s=\[\]%]{1,150}\}\;/g;
                    var func = funcfinder.exec(data);
                    // out(func);
                    console.log(func);
