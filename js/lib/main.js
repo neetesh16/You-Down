@@ -9,7 +9,7 @@
  * http://www.codrops.com
  */
 (function() {
-
+	if(document.getElementById( 'open-button' )==null)return;
 	var bodyEl = document.body,
 		
 		openbtn = document.getElementById( 'open-button' ),
