@@ -46,11 +46,18 @@ app.service('pageInfoService', function() {
             success: function(myjson) {
 
                 try {
-                    
-                    model.title = myjson[1].data.swfcfg.args.title;
-                    model.thumbnail = myjson[1].data.swfcfg.args.thumbnail_url
-                    model.links = linkGenerator(myjson[1].data.swfcfg);
-                    out(myjson);
+                    console.log(myjson);
+                    for(var iN=0; iN<myjson.length ;iN++){
+                        console.log(myjson[iN].data );
+                        if(myjson[iN].data!=null && myjson[iN].data.swfcfg!=null){
+                        model.title = myjson[iN].data.swfcfg.args.title;
+                        model.thumbnail = myjson[iN].data.swfcfg.args.thumbnail_url
+                        model.links = linkGenerator(myjson[iN].data.swfcfg);
+                        out(myjson);
+                        break;
+                     }
+
+                   }
                 }
                 catch(err) {
                     out(err.message);
